@@ -1,10 +1,11 @@
-import './App.css'
-
-function App() {
+export default function App() {
+  const movieTitle = "오디세이";
+  const genre = "모험";
 
   return (
-    <h1>세라의 React 학습</h1>
-  )
+    <article className="movie-card">
+      <h1>{movieTitle}</h1>
+      <p>장르: {genre}</p>
+    </article>
+  );
 }
-
-export default App
