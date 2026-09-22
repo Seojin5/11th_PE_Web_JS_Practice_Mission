@@ -1,12 +1,19 @@
+type MovieCardProps = {
+  title: string;
+  releaseDate: string;
+  isBookmarked: boolean;
+};
+
 function Header() {
   return <h1>영화 목록</h1>;
 }
 
-function MovieCard() {
+function MovieCard({ title, releaseDate, isBookmarked }: MovieCardProps) {
   return (
     <article>
-      <h2>오디세이</h2>
-      <p>2026.08.05</p>
+      <h2>{title}</h2>
+      <p>{releaseDate}</p>
+      <p>{isBookmarked ? "북마크됨" : "북마크 안 됨"}</p>
     </article>
   );
 }
@@ -14,8 +21,21 @@ function MovieCard() {
 function MovieList() {
   return (
     <section>
-      <MovieCard />
-      <MovieCard />
+      <MovieCard
+        title="오디세이"
+        releaseDate="2026.08.05"
+        isBookmarked={true}
+      />
+      <MovieCard
+        title="슈퍼맨"
+        releaseDate="2026.07.11"
+        isBookmarked={false}
+      />
+      <MovieCard
+        title="F1 더 무비"
+        releaseDate="2026.06.25"
+        isBookmarked={true}
+      />
     </section>
   );
 }
