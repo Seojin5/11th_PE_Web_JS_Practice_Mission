@@ -1,11 +1,10 @@
 import { useState } from "react";
-import Header from "./components/layout/header";
-import MovieGrid from "./components/movies/movie-grid";
-import { movies as initialMovies } from "./data/movies";
-import type { Movie } from "./types/movie";
-import "./App.css";
+import MovieGrid from "../../components/movies/movie-grid";
+import { movies as initialMovies } from "../../data/movies";
+import type { Movie } from "../../types/movie";
+import "../../App.css";
 
-export default function App() {
+export function MovieListPage() {
   const [movies, setMovies] = useState<Movie[]>(initialMovies);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -24,8 +23,6 @@ export default function App() {
 
   return (
     <>
-      <Header />
-
       <main className="main">
         <h1>영화 목록</h1>
 
