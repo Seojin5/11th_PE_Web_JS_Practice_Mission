@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MovieGrid from "../../components/movies/movie-grid";
+import Pagination from "../../components/movies/pagination";
 import { movies as initialMovies } from "../../data/movies";
 import type { Movie } from "../../types/movie";
 
@@ -32,26 +33,9 @@ export function MovieListPage() {
         />
       </main>
 
-      <div className="mb-5 flex items-center justify-center gap-1">
-        <button className="flex h-8 w-8 items-center justify-center [&_img]:h-4 [&_img]:w-4">
-          <img src="/movie-icons/chevron-left.svg" alt="이전 페이지" />
-        </button>
-
-        {[1, 2, 3, 4, 5].map((page) => (
-          <button
-            key={page}
-            className={`h-8 min-w-8 rounded px-2 ${currentPage === page ? "bg-[#2864fa] text-white" : "text-[#555]"}`}
-            onClick={() => setCurrentPage(page)}
-          >
-            {page}
-          </button>
-        ))}
-
-        <button className="flex h-8 w-8 items-center justify-center [&_img]:h-4 [&_img]:w-4">
-          <img src="/movie-icons/chevron-right.svg" alt="다음 페이지" />
-        </button>
-      </div>
+      <Pagination currentPage={currentPage} totalPages={5} onPageChange={setCurrentPage} />
 
 </>
   );
 }
+

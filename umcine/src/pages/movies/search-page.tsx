@@ -1,6 +1,7 @@
 import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { useState, type SubmitEvent } from "react";
 import { movies } from "../../data/movies";
+import { cn } from "../../utils/cn";
 
 export function SearchPage() {
   const { query } = useSearch({ from: "/search" });
@@ -22,7 +23,7 @@ function SearchPageContent({ query }: { query: string | undefined }) {
   }
 
   const form = (
-    <form onSubmit={handleSubmit} role="search" className={`flex w-full items-center gap-3 rounded-[10px] bg-white px-4 ${normalizedQuery ? "h-[54px] border border-[#dce1e8]" : "h-[74px] border border-[#181a20] shadow-lg"}`}>
+    <form onSubmit={handleSubmit} role="search" className={cn("flex w-full items-center gap-3 rounded-[10px] border bg-white px-4", normalizedQuery ? "h-[54px] border-[#dce1e8]" : "h-[74px] border-[#181a20] shadow-lg")}>
       <img src="/movie-icons/search.svg" alt="" className="h-5 w-5 shrink-0" />
       <input aria-label="영화 검색어" placeholder="예: 스파이더맨" value={searchText} onChange={(event) => setSearchText(event.target.value)} className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-[#939baa]" />
       {searchText && <button type="button" aria-label="검색어 지우기" onClick={() => setSearchText("")} className="p-2"><img src="/movie-icons/close.svg" alt="" className="h-5 w-5" /></button>}
@@ -68,3 +69,4 @@ function SearchPageContent({ query }: { query: string | undefined }) {
     </main>
   );
 }
+

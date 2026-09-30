@@ -1,9 +1,10 @@
 import { Link, useLocation } from "@tanstack/react-router";
+import { cn } from "../../utils/cn";
 
 export default function Header() {
   const pathname = useLocation({ select: (location) => location.pathname });
   const navClass = (active: boolean) =>
-    `text-sm ${active ? "font-bold text-[#181a20] underline underline-offset-8" : "text-[#555d6b]"}`;
+    cn("text-sm", active ? "font-bold text-[#181a20] underline underline-offset-8" : "text-[#555d6b]");
   return (
     <header className="h-[91px] shrink-0 border-b border-[#e2e5eb] bg-white">
       <div className="mx-auto flex h-full w-[calc(100%-40px)] max-w-[1280px] items-center gap-8 md:w-[calc(100%-80px)] lg:w-[calc(100%-160px)]">
@@ -26,3 +27,4 @@ export default function Header() {
     </header>
   );
 }
+
