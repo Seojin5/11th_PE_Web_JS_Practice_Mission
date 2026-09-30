@@ -2,7 +2,7 @@ import { useState } from "react";
 import MovieGrid from "../../components/movies/movie-grid";
 import { movies as initialMovies } from "../../data/movies";
 import type { Movie } from "../../types/movie";
-import "../../App.css";
+
 
 export function MovieListPage() {
   const [movies, setMovies] = useState<Movie[]>(initialMovies);
@@ -23,8 +23,8 @@ export function MovieListPage() {
 
   return (
     <>
-      <main className="main">
-        <h1>영화 목록</h1>
+      <main className="mx-auto w-[90%] max-w-[1280px] flex-1 py-8">
+        <h1 className="mb-5 text-2xl font-bold">영화 목록</h1>
 
         <MovieGrid
           movies={movies}
@@ -32,33 +32,26 @@ export function MovieListPage() {
         />
       </main>
 
-      <div className="pagination">
-        <button className="pagination-arrow">
+      <div className="mb-5 flex items-center justify-center gap-1">
+        <button className="flex h-8 w-8 items-center justify-center [&_img]:h-4 [&_img]:w-4">
           <img src="/movie-icons/chevron-left.svg" alt="이전 페이지" />
         </button>
 
         {[1, 2, 3, 4, 5].map((page) => (
           <button
             key={page}
-            className={currentPage === page ? "active" : ""}
+            className={`h-8 min-w-8 rounded px-2 ${currentPage === page ? "bg-[#2864fa] text-white" : "text-[#555]"}`}
             onClick={() => setCurrentPage(page)}
           >
             {page}
           </button>
         ))}
 
-        <button className="pagination-arrow">
+        <button className="flex h-8 w-8 items-center justify-center [&_img]:h-4 [&_img]:w-4">
           <img src="/movie-icons/chevron-right.svg" alt="다음 페이지" />
         </button>
       </div>
 
-      <footer className="footer">
-        <span>TMDB</span>
-        <p>
-          This product uses the TMDB API but is not endorsed or certified by
-          TMDB.
-        </p>
-      </footer>
-    </>
+</>
   );
 }
