@@ -10,5 +10,5 @@ export const Route = createRootRoute({
       <Footer />
     </div>
   ),
-  notFoundComponent: () => <main className="mx-auto w-full max-w-[1280px] flex-1 px-5 py-12">페이지를 찾을 수 없어요.</main>,
+  notFoundComponent: () => <main className="mx-auto w-full max-w-320 flex-1 px-5 py-12">페이지를 찾을 수 없어요.</main>,
 });

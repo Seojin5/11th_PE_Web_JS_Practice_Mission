@@ -24,7 +24,7 @@ export function MovieListPage() {
 
   return (
     <>
-      <main className="mx-auto w-[90%] max-w-[1280px] flex-1 py-8">
+      <main className="mx-auto w-[90%] max-w-320 flex-1 py-8">
         <h1 className="mb-5 text-2xl font-bold">영화 목록</h1>
 
         <MovieGrid
@@ -38,4 +38,3 @@ export function MovieListPage() {
 </>
   );
 }
-

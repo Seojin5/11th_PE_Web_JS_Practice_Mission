@@ -6,8 +6,8 @@ export default function Header() {
   const navClass = (active: boolean) =>
     cn("text-sm", active ? "font-bold text-[#181a20] underline underline-offset-8" : "text-[#555d6b]");
   return (
-    <header className="h-[91px] shrink-0 border-b border-[#e2e5eb] bg-white">
-      <div className="mx-auto flex h-full w-[calc(100%-40px)] max-w-[1280px] items-center gap-8 md:w-[calc(100%-80px)] lg:w-[calc(100%-160px)]">
+    <header className="h-22.75 shrink-0 border-b border-[#e2e5eb] bg-white">
+      <div className="mx-auto flex h-full w-[calc(100%-40px)] max-w-320 items-center gap-8 md:w-[calc(100%-80px)] lg:w-[calc(100%-160px)]">
         <Link to="/" className="flex shrink-0 items-center gap-2" aria-label="UMCine 영화 목록">
           <img src="/movie-icons/movie.svg" alt="" className="h-8 w-8" />
           <strong className="text-xl font-extrabold tracking-tight">UMCine</strong>
@@ -27,4 +27,3 @@ export default function Header() {
     </header>
   );
 }
-

@@ -29,7 +29,7 @@ export default function MovieCard({
         <button
           type="button"
           className={cn(
-            "absolute right-[9px] top-[9px] flex h-8 w-8 items-center justify-center rounded-[6px] border border-white p-0",
+            "absolute right-2.25 top-2.25 flex h-8 w-8 items-center justify-center rounded-md border border-white p-0",
             movie.isBookmarked ? "bg-[#2864dc]" : "bg-black/55",
           )}
           aria-label={movie.isBookmarked ? "북마크 해제" : "북마크 추가"}
@@ -48,7 +48,7 @@ export default function MovieCard({
         </button>
       </div>
 
-      <h2 className="mt-[9px] mb-1 truncate text-left text-[13px] font-bold">
+      <h2 className="mt-2.25 mb-1 truncate text-left text-[13px] font-bold">
         <Link
           to="/movies/$movieId"
           params={{ movieId: String(movie.id) }}
