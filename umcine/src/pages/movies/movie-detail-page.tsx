@@ -34,6 +34,17 @@ function MovieDetailRequest({ movieId }: { movieId: number }) {
 
 function MovieDetailContent({ movie }: { movie: TmdbMovieDetail }) {
 
+  const genresText = movie.genres.map((genre) => genre.name).join(", ");
+  let runtimeText = "상영 시간 정보가 없어요.";
+
+  if (typeof movie.runtime === "number") {
+    const hours = Math.floor(movie.runtime / 60);
+    const minutes = movie.runtime % 60;
+    runtimeText = hours > 0
+      ? `${hours}시간 ${minutes}분`
+      : `${minutes}분`;
+  }
+
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
   const [message, setMessage] = useState("");
@@ -52,7 +63,11 @@ function MovieDetailContent({ movie }: { movie: TmdbMovieDetail }) {
           <div className="mt-auto">
             <h1 className="text-3xl leading-tight font-bold tracking-tight sm:text-[44px]">{movie.title}</h1>
             <p className="mt-2 text-sm">{movie.original_title}</p>
-            <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm font-semibold"><span>{movie.release_date}</span><span>{movie.genres.map((genre) => genre.name).join(", ")}</span><span>{typeof movie.runtime === "number" ? `${Math.floor(movie.runtime / 60)}시간 ${movie.runtime % 60}분` : "상영 시간 정보가 없어요."}</span></p>
+            <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm font-semibold">
+              <span>{movie.release_date}</span>
+              <span>{genresText}</span>
+              <span>{runtimeText}</span>
+            </p>
           </div>
         </div>
       </section>
@@ -79,4 +94,5 @@ function MovieDetailContent({ movie }: { movie: TmdbMovieDetail }) {
     </main>
   );
 }
+
 

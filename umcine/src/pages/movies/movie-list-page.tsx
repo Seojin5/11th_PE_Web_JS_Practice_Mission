@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import MovieGrid from "../../components/movies/movie-grid";
 import Pagination from "../../components/movies/pagination";
 import { getMovies } from "../../api/movies/get-movies";
 
 export function MovieListPage() {
-  const [page, setPage] = useState(1);
+  const { page: searchPage } = useSearch({ from: "/" });
+  const page = searchPage ?? 1;
+  const navigate = useNavigate({ from: "/" });
 
   const moviesQuery = useQuery({
     queryKey: ["movies", "list", { page }],
@@ -16,7 +18,10 @@ export function MovieListPage() {
   const totalPages = Math.min(moviesQuery.data?.total_pages ?? 0, 500);
 
   const handlePageChange = (nextPage: number) => {
-    setPage(nextPage);
+    if (!Number.isInteger(nextPage) || nextPage < 1 || nextPage > totalPages) return;
+    void navigate({
+      search: nextPage === 1 ? {} : { page: nextPage },
+    });
   };
 
   return (
@@ -43,3 +48,4 @@ export function MovieListPage() {
     </>
   );
 }
+
