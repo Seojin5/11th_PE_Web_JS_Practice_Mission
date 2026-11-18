@@ -7,6 +7,7 @@ import { useUpdateMeMutation } from '../hooks/use-update-me-mutation';
 import { useAuthStore } from '../stores/auth-store';
 import { useProfileStore } from '../stores/profile-store';
 import { MemberRatings } from '../components/member-ratings';
+import { FavoriteMovies } from '../components/movies/favorite-movies';
 
 export function ProfilePage({ editing = false }: { editing?: boolean }) {
   const accessToken = useAuthStore((state) => state.accessToken);
@@ -112,6 +113,8 @@ function ProfileContent({ profile, editing }: { profile: MemberInfo; editing: bo
           className="h-13 w-full rounded-lg border border-[#e2e5eb] bg-white px-4 text-sm text-[#677080]" />
       </form>
     </div>
+
+    {!editing && <FavoriteMovies />}
 
     <div className="mt-auto pt-16">
       <details className="mb-5 text-sm text-[#677080]">
