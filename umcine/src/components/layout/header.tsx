@@ -1,7 +1,11 @@
 import { Link, useLocation } from "@tanstack/react-router";
+import { useMeQuery } from "../../hooks/use-me-query";
+import { useAuthStore } from "../../stores/auth-store";
 import { cn } from "../../utils/cn";
 
 export default function Header() {
+  const accessToken = useAuthStore((state) => state.accessToken);
+  const meQuery = useMeQuery();
   const pathname = useLocation({ select: (location) => location.pathname });
   const navClass = (active: boolean) =>
     cn("text-sm", active ? "font-bold text-[#181a20] underline underline-offset-8" : "text-[#555d6b]");
@@ -21,7 +25,13 @@ export default function Header() {
           <Link to="/search" search={{}} aria-label="영화 검색" className="flex h-11 w-11 items-center justify-center rounded-lg border border-[#e2e5eb]">
             <img src="/movie-icons/search.svg" alt="" className="h-5 w-5" />
           </Link>
-          <Link to="/login" className="hidden h-11 items-center rounded-lg bg-[#2864fa] px-5 text-sm font-bold text-white sm:flex">로그인</Link>
+          {!accessToken ? (
+            <Link to="/login" className="hidden h-11 items-center rounded-lg bg-[#2864fa] px-5 text-sm font-bold text-white sm:flex">로그인</Link>
+          ) : meQuery.isLoading ? (
+            <span role="status" aria-label="내 정보 불러오는 중" className="hidden h-11 w-24 animate-pulse rounded-lg bg-gray-200 sm:block" />
+          ) : (
+            <Link to="/profile" className="hidden h-11 items-center rounded-lg bg-[#2864fa] px-5 text-sm font-bold text-white sm:flex">마이페이지</Link>
+          )}
         </div>
       </div>
     </header>
